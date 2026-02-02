@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Lab_04_Functions&amp;PassingMethods.vcxproj" />
+  <Project Path="Lab_04_Functions&amp;PassingMethods.vcxproj" Id="876a49cf-3bf5-4435-abe6-3b13041c4870" />
 </Solution>

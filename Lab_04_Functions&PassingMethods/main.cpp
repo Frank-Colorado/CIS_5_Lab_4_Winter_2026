@@ -7,7 +7,7 @@ using std::cout;
 // This function takes 2 parameters:
 // 1. A constant reference to an array of integers representing student scores
 // 2. A constant reference to an integer representing the size of the array
-static int calculateSum (const int(&scores)[5], const int& size) {
+static int calculateSum (const int(&scores)[5], int size) {
 	// Here I declare a variable to hold the sum of scores
 	// I intialize it to 0
 	int sum = 0;
@@ -54,7 +54,7 @@ static void addBonus(int* scores, int size, int bonus) {
 // This function takes 2 parameters:
 // 1. A constant pointer to an array of integers representing student scores
 // 2. An integer representing the size of the array
-static int findHighest(const int* scores, const int size) {
+static int findHighest(const int* scores, int size) {
 	// Here I declare a variable to hold the highest score
 	// I tell the pointer to get the first score in the array to initialize it
 	int highest = scores[0]; 
@@ -78,7 +78,7 @@ static int findHighest(const int* scores, const int size) {
 // This function takes 2 parameters:
 // 1. A constant reference to an array of integers representing student scores
 // 2. An integer representing the size of the array
-static int countPassed(const int(&scores)[5], const int size) {
+static int countPassed(const int(&scores)[5], int size) {
 	// Here I declare a variable to hold the count of passing scores
 	int count = 0;
 
@@ -100,7 +100,7 @@ static int countPassed(const int(&scores)[5], const int size) {
 // This function takes 2 parameters:
 // 1. A constant reference to an array of integers representing student scores
 // 2. A constant reference to an integer representing the size of the array
-static void printScores(const int(&scores)[5], const int& size) {
+static void printScores(const int(&scores)[5], int size) {
 	// I will used a ranged based for loop to iterate through the array since we are just reading the values
 	for (int score : scores) {
 		cout << score << " ";

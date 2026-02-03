@@ -30,3 +30,7 @@ Deliverable:
 - main.cpp
 - 1–2 min video explaining logic + demo run
 - Upload to GitHub (fork this repo first)
+
+Here is the link to my demonstration video for this lab: 
+
+https://vimeo.com/1161287893?share=copy&fl=sv&fe=ci

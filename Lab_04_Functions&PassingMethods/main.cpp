@@ -45,7 +45,7 @@ static void addBonus(int* scores, int size, int bonus) {
 	
 	// Here I use a classic for loop to iterate through the array and add the bonus points to each score
 	for (int i = 0; i < size; ++i) {
-		(scores)[i] += bonus;
+		(scores)[i] += bonus;// *(scores + i) += bonus; // Alternative way using pointer arithmetic
 	}
 }
 
@@ -57,7 +57,7 @@ static void addBonus(int* scores, int size, int bonus) {
 static int findHighest(const int* scores, int size) {
 	// Here I declare a variable to hold the highest score
 	// I tell the pointer to get the first score in the array to initialize it
-	int highest = scores[0]; 
+	int highest = scores[0]; // This is the same as *(scores + 0)
 
 	// I then use a classic for loop to iterate through the array and find the highest score
 	// I start with i at index 1 because I have already initialized highest with the first score in the array
@@ -120,6 +120,10 @@ int main() {
 	int bonus = 5;
 
 
+	// After some research I found out that passing in "scores" is the same as passing &scores[0]
+	// So both ways are valid when passing the array to functions that expect a pointer or reference
+	// This is apparently because the name of the array decays to a pointer to its first element when passed to functions
+
 	// Calculate the sum of all student scores
 	int totalScore = calculateSum(scores, SIZE);
 
@@ -144,7 +148,7 @@ int main() {
 
 
 	// Function to add bonus points to each student's score
-	addBonus(scores, SIZE, bonus);
+	addBonus(scores, SIZE, bonus); // &scores[0] 
 
 	// Output of all the new scores and values after adding bonus points
 	cout << "\nNew Scores after adding bonus points: ";

@@ -38,15 +38,39 @@ static double getAverage(int sum, int size) {
 // 1. A pointer to an array of integers representing student scores
 // 2. An integer representing the size of the array
 // 3. An integer representing the bonus points to be added
-static void addBonus(int(*scores)[5], int size, int bonus) {
+static void addBonus(int* scores, int size, int bonus) {
 
 	// Check to make sure the pointer is not null
 	if (scores == nullptr) return; // If the pointer is null, simply return
 	
 	// Here I use a classic for loop to iterate through the array and add the bonus points to each score
 	for (int i = 0; i < size; ++i) {
-		(*scores)[i] += bonus;
+		(scores)[i] += bonus;
 	}
+}
+
+// Function that finds the highest score among all the student's scores
+// This function will use a constant pointer to the array holding the scores
+// This function takes 2 parameters:
+// 1. A constant pointer to an array of integers representing student scores
+// 2. An integer representing the size of the array
+static int findHighest(const int* scores, const int size) {
+	// Here I declare a variable to hold the highest score
+	// I tell the pointer to get the first score in the array to initialize it
+	int highest = scores[0]; 
+
+	// I then use a classic for loop to iterate through the array and find the highest score
+	// I start with i at index 1 because I have already initialized highest with the first score in the array
+	for (int i = 1; i < size; ++i) {
+		// I will the check if the current score is higher than the highest score found so far
+		if (scores[i] > highest) {
+			// If it is, then I get the the value at the current index of the array and assign it to highest
+			highest = scores[i];
+		}
+	}
+
+	// I then return the highest score found
+	return highest;
 }
 
 // Function that prints the scores array
@@ -73,9 +97,6 @@ int main() {
 	// Variable for holding the bonus points to be added to each score
 	int bonus = 5;
 
-	// Pointer to the scores array
-	int (*ptrScores)[SIZE] = &scores;
-
 
 	// Calculate the sum of all student scores
 	int totalScore = calculateSum(scores, SIZE);
@@ -83,12 +104,21 @@ int main() {
 	// Then I use the sum that I got from the calculateSum function to get the average score
 	int averageScore = getAverage(totalScore, SIZE);
 
+	// Getting the highest score out of the student's scores
+	int highestScore = findHighest(scores, SIZE);
+
 	// Output of all the current scores 
 	cout << "Current Scores: ";
 	printScores(scores, SIZE);
 
+	// Outputs for the sum, average, and highest score
+	cout << "\n\nTotal Score: " << totalScore;
+	cout << "\nAverage Score: " << averageScore << "\n";
+	cout << "Highest Score: " << highestScore << "\n";
+
+
 	// Function to add bonus points to each student's score
-	addBonus(&scores, SIZE, bonus);
+	addBonus(scores, SIZE, bonus);
 
 	// Output of all the new scores after adding bonus points
 	cout << "\nNew Scores after adding bonus points: ";

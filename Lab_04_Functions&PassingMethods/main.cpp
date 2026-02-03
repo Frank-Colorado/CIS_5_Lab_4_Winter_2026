@@ -49,6 +49,17 @@ static void addBonus(int(*scores)[5], int size, int bonus) {
 	}
 }
 
+// Function that prints the scores array
+// This function will use a constant reference to the array to avoid copying
+// This function takes 2 parameters:
+// 1. A constant reference to an array of integers representing student scores
+// 2. A constant reference to an integer representing the size of the array
+static void printScores(const int(&scores)[5], const int& size) {
+	// I will used a ranged based for loop to iterate through the array since we are just reading the values
+	for (int score : scores) {
+		cout << score << " ";
+	}
+}	
 
 
 int main() {
@@ -74,17 +85,14 @@ int main() {
 
 	// Output of all the current scores 
 	cout << "Current Scores: ";
-	for (int i = 0; i < SIZE; ++i) {
-		cout << scores[i] << " ";
-	}
+	printScores(scores, SIZE);
+
 	// Function to add bonus points to each student's score
 	addBonus(&scores, SIZE, bonus);
 
 	// Output of all the new scores after adding bonus points
 	cout << "\nNew Scores after adding bonus points: ";
-	for (int i = 0; i < SIZE; ++i) {
-		cout << scores[i] << " ";
-	}
+	printScores(scores, SIZE);
 
 	
 

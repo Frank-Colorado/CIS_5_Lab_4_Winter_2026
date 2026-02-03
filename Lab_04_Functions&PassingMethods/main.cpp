@@ -73,6 +73,28 @@ static int findHighest(const int* scores, const int size) {
 	return highest;
 }
 
+// Function that counts how many students have passing scores
+// This function will use a constant reference to the array of student scores
+// This function takes 2 parameters:
+// 1. A constant reference to an array of integers representing student scores
+// 2. An integer representing the size of the array
+static int countPassed(const int(&scores)[5], const int size) {
+	// Here I declare a variable to hold the count of passing scores
+	int count = 0;
+
+	// I then use a classic for loop to iterate through the array and count how many scores are passing
+	for (int i = 0; i < size; ++i) {
+		// I use a conditional to check if the current score is passing (assuming passing is 70 and above)
+		if (scores[i] >= 70) {
+			// If it is, then I increment the count variable
+			++count;
+		}
+	}
+
+	// I then return the count of passing scores
+	return count;
+}
+
 // Function that prints the scores array
 // This function will use a constant reference to the array to avoid copying
 // This function takes 2 parameters:
@@ -107,27 +129,30 @@ int main() {
 	// Getting the highest score out of the student's scores
 	int highestScore = findHighest(scores, SIZE);
 
+	// Find how many students scores are passing (assuming passing is 70 and above)
+	int passingScores = countPassed(scores, SIZE);
+
 	// Output of all the current scores 
 	cout << "Current Scores: ";
 	printScores(scores, SIZE);
 
-	// Outputs for the sum, average, and highest score
+	// Outputs for the sum, average, highest score, and number of passing scores
 	cout << "\n\nTotal Score: " << totalScore;
 	cout << "\nAverage Score: " << averageScore << "\n";
 	cout << "Highest Score: " << highestScore << "\n";
+	cout << "Number of Passing Scores: " << passingScores << "\n";
 
 
 	// Function to add bonus points to each student's score
 	addBonus(scores, SIZE, bonus);
 
-	// Output of all the new scores after adding bonus points
+	// Output of all the new scores and values after adding bonus points
 	cout << "\nNew Scores after adding bonus points: ";
 	printScores(scores, SIZE);
-
-	
-
-
-
+	cout << "\n\nTotal Score after bonus: " << calculateSum(scores, SIZE);
+	cout << "\nAverage Score after bonus: " << getAverage(calculateSum(scores, SIZE), SIZE) << "\n";
+	cout << "Highest Score after bonus: " << findHighest(scores, SIZE) << "\n";
+	cout << "Number of Passing Scores after bonus: " << countPassed(scores, SIZE) << "\n";
 
 
 	return 0;
